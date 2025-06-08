@@ -61,6 +61,71 @@
         <a href="/" class="button secondary error-button-home">Go home</a>
       </p>
     </div>
+    <canvas id="myCanvas" width="1200" height="800"></canvas>
+    <script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Utility to interpolate between two hex colors, now with alpha
+    function lerpColor(a, b, t, alpha = 1) {
+      const ah = parseInt(a.replace('#', ''), 16);
+      const bh = parseInt(b.replace('#', ''), 16);
+      const ar = (ah >> 16) & 0xff, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+      const br = (bh >> 16) & 0xff, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+      const rr = Math.round(ar + (br - ar) * t);
+      const rg = Math.round(ag + (bg - ag) * t);
+      const rb = Math.round(ab + (bb - ab) * t);
+      return `rgba(${rr},${rg},${rb},${alpha})`;
+    }
+
+    // Draw a morphing blob with more alpha and blur, and support for horizontal elongation
+    function drawBlob(ctx, cx, cy, r, points, t, color1, color2, alpha = 0.9, shadowAlpha = 0.25, shadowBlur = 100, xScale = 1.5, yScale = 1) {
+      ctx.save();
+      // Calculate all points first
+      const blobPoints = [];
+      for (let i = 0; i < points; i++) {
+        const angle = (i / points) * 2 * Math.PI;
+        const morph = Math.sin(angle * 3 + t) * 30 + Math.cos(angle * 5 + t * 0.7) * 15;
+        const rad = r + morph;
+        // Apply xScale and yScale for elongation
+        const x = cx + Math.cos(angle) * rad * xScale;
+        const y = cy + Math.sin(angle) * rad * yScale;
+        blobPoints.push({ x, y });
+      }
+      ctx.beginPath();
+      ctx.moveTo(blobPoints[0].x, blobPoints[0].y);
+      for (let i = 0; i < points; i++) {
+        const p1 = blobPoints[i];
+        const p2 = blobPoints[(i + 1) % points];
+        const midX = (p1.x + p2.x) / 2;
+        const midY = (p1.y + p2.y) / 2;
+        ctx.quadraticCurveTo(p1.x, p1.y, midX, midY);
+      }
+      ctx.closePath();
+      const grad = ctx.createLinearGradient(cx - r * xScale, cy, cx + r * xScale, cy);
+      grad.addColorStop(0, lerpColor(color1, color2, 0, alpha));
+      grad.addColorStop(1, lerpColor(color1, color2, 1, alpha));
+      ctx.fillStyle = grad;
+      ctx.shadowColor = lerpColor(color2, color1, 0.5, shadowAlpha);
+      ctx.shadowBlur = shadowBlur;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    let time = 0;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Animate colors
+      const c1 = '#ff4b2b', c2 = '#1e90ff', c5 = '#ffb347', c6 = '#8e44ad';
+      // First blob: centered, wide
+      drawBlob(ctx, 600, 400, 200, 40, time, c1, c2, 0.5, 0.25, 120, 1.5, 1);
+      // Second blob: offset by 300px of canvas width, wide
+      drawBlob(ctx, 600 + 300, 400, 120, 30, -time * 1.2, c5, c6, 0.35, 0.18, 80, 1.5, 1);
+      time += 0.02;
+      requestAnimationFrame(animate);
+    }
+    animate();
+    </script>
   </main>
   <footer></footer>
 </body>
