@@ -523,9 +523,9 @@ function decorateSections(main) {
             notes.classList.add('notes');
             notes.innerHTML = meta[key];
             section.appendChild(notes);
-          }
-          else section.setAttribute(key, meta[key]);
+          } else section.setAttribute(key, meta[key]);
         });
+      }
       sectionMeta.parentNode.remove();
     }
     replaceTag(section, 'section');
