@@ -51,17 +51,27 @@ export function moveInstrumentation(from, to) {
   );
 }
 
-/**
- * load fonts.css and set a session storage flag
- */
-// async function loadFonts() {
-//   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-//   try {
-//     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-//   } catch (e) {
-//     // do nothing
-//   }
-// }
+document.addEventListener('DOMContentLoaded', () => {
+  const themeLink = document.getElementById('theme');
+  const themeSwitcher = document.getElementById('theme-switcher');
+
+  // Set the dropdown to the current theme
+  const currentTheme = themeLink.getAttribute('href').match(/theme\/([a-z]+)\.css/)[1];
+  themeSwitcher.value = currentTheme;
+
+  themeSwitcher.addEventListener('change', () => {
+    const newTheme = themeSwitcher.value;
+    themeLink.setAttribute('href', `styles/theme/${newTheme}.css`);
+    localStorage.setItem('reveal-theme', newTheme);
+  });
+
+  // On load, check if a theme is saved in localStorage
+  const savedTheme = localStorage.getItem('reveal-theme');
+  if (savedTheme && savedTheme !== currentTheme) {
+    themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
+    themeSwitcher.value = savedTheme;
+  }
+});
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -132,14 +142,6 @@ async function loadEager(doc) {
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
-  try {
-    /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
-    if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
-      loadFonts();
-    }
-  } catch (e) {
-    // do nothing
-  }
   decorateReveal();
   Reveal.initialize({
     controls: true,
