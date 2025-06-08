@@ -493,22 +493,40 @@ function replaceTag(element, tag) {
  * @param {Element} main The container element
  */
 function decorateSections(main) {
-  main.querySelectorAll(':scope > div').forEach((section) => {
+  main.querySelectorAll(':scope > div:not([data-section-status])').forEach((section) => {
+    const wrappers = [];
+    let defaultContent = false;
+    [...section.children].forEach((e) => {
+      if ((e.tagName === 'DIV' && e.className) || !defaultContent) {
+        const wrapper = document.createElement('div');
+        wrappers.push(wrapper);
+        defaultContent = e.tagName !== 'DIV' || !e.className;
+        if (defaultContent) wrapper.classList.add('default-content-wrapper');
+      }
+      wrappers[wrappers.length - 1].append(e);
+    });
+    wrappers.forEach((wrapper) => section.append(wrapper));
+    section.classList.add('section');
+    section.dataset.sectionStatus = 'initialized';
+    section.style.display = 'none';
+
+    // Process section metadata
     const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {
-      const meta = readBlockConfig(sectionMeta);
-      const keys = Object.keys(meta);
-      keys.forEach((key) => {
-        if (key === 'style') section.classList.add(toClassName(meta.style));
-        else if (key === 'notes')
-        {
-          const notes = document.createElement('aside');
-          notes.classList.add('notes');
-          notes.innerHTML = meta[key];
-          section.appendChild(notes);
-        } else section.setAttribute(key, meta[key]);
-      });
-      sectionMeta.remove();
+      if (sectionMeta) {
+        const meta = readBlockConfig(sectionMeta);
+        const keys = Object.keys(meta);
+        keys.forEach((key) => {
+          if (key === 'style') section.classList.add(toClassName(meta.style));
+          else if (key === 'notes') {
+            const notes = document.createElement('aside');
+            notes.classList.add('notes');
+            notes.innerHTML = meta[key];
+            section.appendChild(notes);
+          }
+          else section.setAttribute(key, meta[key]);
+        });
+      sectionMeta.parentNode.remove();
     }
     replaceTag(section, 'section');
   });
