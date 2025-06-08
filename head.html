@@ -10,3 +10,43 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- Theme Switcher -->
+<select id="theme-switcher" style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
+  <option value="league">League</option>
+  <option value="beige">Beige</option>
+  <option value="black">Black</option>
+  <option value="blood">Blood</option>
+  <option value="moon">Moon</option>
+  <option value="night">Night</option>
+  <option value="serif">Serif</option>
+  <option value="simple">Simple</option>
+  <option value="sky">Sky</option>
+  <option value="solarized">Solarized</option>
+  <option value="white">White</option>
+</select>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const themeLink = document.getElementById('theme');
+  const themeSwitcher = document.getElementById('theme-switcher');
+
+  // Set the dropdown to the current theme
+  const currentTheme = themeLink.getAttribute('href').match(/theme\/([a-z]+)\.css/)[1];
+  themeSwitcher.value = currentTheme;
+
+  themeSwitcher.addEventListener('change', function() {
+    const newTheme = themeSwitcher.value;
+    themeLink.setAttribute('href', `styles/theme/${newTheme}.css`);
+    // Optionally, save the selection to localStorage
+    localStorage.setItem('reveal-theme', newTheme);
+  });
+
+  // On load, check if a theme is saved in localStorage
+  const savedTheme = localStorage.getItem('reveal-theme');
+  if (savedTheme && savedTheme !== currentTheme) {
+    themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
+    themeSwitcher.value = savedTheme;
+  }
+});
+</script>
