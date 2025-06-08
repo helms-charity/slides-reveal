@@ -1,0 +1,15 @@
+.r-hstack {
+  gap: 20px;
+}
+
+.r-hstack-box h2 {
+  gap: 30px;
+}
+
+.r-hstack-box h2 {
+  font-size: 30px;
+  text-align: center;
+}
+.r-hstack-picture {
+  width: 150px;
+}

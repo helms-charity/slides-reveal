@@ -1,6 +1,6 @@
 import {
-  loadHeader,
-  loadFooter,
+  // loadHeader,
+  // loadFooter,
   decorateButtons,
   decorateIcons,
   decorateSections,
@@ -11,6 +11,11 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
+import Reveal from './reveal.esm.js';
+import RevealZoom from '../plugin/zoom/zoom.esm.js';
+import RevealNotes from '../plugin/notes/notes.esm.js';
+import RevealSearch from '../plugin/search/search.esm.js';
+import RevealHighlight from '../plugin/highlight/highlight.esm.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -71,6 +76,34 @@ function buildAutoBlocks() {
   }
 }
 
+function decorateReveal() {
+  const main = document.body.querySelector('main');
+  main.classList.add('reveal');
+  const slides = document.createElement('div');
+  slides.classList.add('slides');
+  slides.innerHTML = main.innerHTML;
+  main.replaceChildren();
+  main.appendChild(slides);
+
+  // Treat links that contain an href that starts with http://attribute as attributes
+  // Decorate the parent element with the attributes and remove the achor tag
+  main.querySelectorAll("[href^='http://attribute']").forEach((link) => {
+    const parent = link.parentNode;
+    const attributes = link.href.replace('http://attribute/?', '').split('&');
+    attributes.forEach((attribute) => {
+      const [key, value] = attribute.split('=');
+      parent.setAttribute(key, decodeURI(value));
+    });
+    parent.innerHTML = link.innerHTML;
+  });
+
+  // Use line numbers on any code blocks.. assume javascript
+  main.querySelectorAll('code').forEach((code) => {
+    code.setAttribute('data-line-numbers', '');
+    code.classList.add('language-javascript');
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -107,6 +140,16 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+  decorateReveal();
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    center: true,
+    hash: true,
+    transition: 'convex',
+    // Learn about plugins: https://revealjs.com/plugins/
+    plugins: [RevealZoom, RevealNotes, RevealSearch, RevealHighlight],
+  });
 }
 
 /**
@@ -121,8 +164,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  // loadHeader(doc.querySelector('header'));
+  // loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

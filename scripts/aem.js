@@ -473,6 +473,22 @@ function decorateIcons(element, prefix = '') {
 }
 
 /**
+ * Replaces a tag with a new tag.
+ * @param {Element} element The element to replace
+ * @param {string} tag The new tag
+ */
+function replaceTag(element, tag) {
+  const newTag = document.createElement(tag);
+  while (element.firstChild) {
+    newTag.appendChild(element.firstChild);
+  }
+  element.parentNode.replaceChild(newTag, element);
+  [...element.attributes].forEach((attr) => {
+    newTag.setAttribute(attr.nodeName, attr.nodeValue);
+  });
+}
+
+/**
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
@@ -511,6 +527,7 @@ function decorateSections(main) {
       });
       sectionMeta.parentNode.remove();
     }
+    replaceTag(section, 'section');
   });
 }
 

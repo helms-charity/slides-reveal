@@ -1,0 +1,8 @@
+.image-slide picture img {
+  max-height: 450px;
+}
+
+.image-slide p {
+  font-style: italic;
+  font-size: 0.5em;
+}
