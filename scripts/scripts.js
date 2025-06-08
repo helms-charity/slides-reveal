@@ -54,14 +54,14 @@ export function moveInstrumentation(from, to) {
 /**
  * load fonts.css and set a session storage flag
  */
-async function loadFonts() {
-  await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
-  try {
-    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
-  } catch (e) {
-    // do nothing
-  }
-}
+// async function loadFonts() {
+//   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
+//   try {
+//     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+//   } catch (e) {
+//     // do nothing
+//   }
+// }
 
 /**
  * Builds all synthetic blocks in a container element.
