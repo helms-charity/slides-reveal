@@ -14,6 +14,3 @@
  * decorates the r-hstack block
  * @param {Element} block The experience block element
  */
-export default async function decorate(block) {
-
-}
