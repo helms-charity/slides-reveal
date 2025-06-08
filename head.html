@@ -25,28 +25,3 @@
   <option value="solarized">Solarized</option>
   <option value="white">White</option>
 </select>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const themeLink = document.getElementById('theme');
-  const themeSwitcher = document.getElementById('theme-switcher');
-
-  // Set the dropdown to the current theme
-  const currentTheme = themeLink.getAttribute('href').match(/theme\/([a-z]+)\.css/)[1];
-  themeSwitcher.value = currentTheme;
-
-  themeSwitcher.addEventListener('change', function() {
-    const newTheme = themeSwitcher.value;
-    themeLink.setAttribute('href', `styles/theme/${newTheme}.css`);
-    // Optionally, save the selection to localStorage
-    localStorage.setItem('reveal-theme', newTheme);
-  });
-
-  // On load, check if a theme is saved in localStorage
-  const savedTheme = localStorage.getItem('reveal-theme');
-  if (savedTheme && savedTheme !== currentTheme) {
-    themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
-    themeSwitcher.value = savedTheme;
-  }
-});
-</script>
