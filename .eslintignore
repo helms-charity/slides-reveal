@@ -2,3 +2,4 @@ helix-importer-ui
 dompurify.min.js
 plugin/*
 scripts/reveal.esm.js
+styles/theme/*

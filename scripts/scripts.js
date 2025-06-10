@@ -51,26 +51,67 @@ export function moveInstrumentation(from, to) {
   );
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Add the themeSwitcher function
+function themeSwitcher() {
+  // Dynamically add the Theme Switcher dropdown if not already present
+  let switcher = document.getElementById('theme-switcher');
+  if (!switcher) {
+    switcher = document.createElement('select');
+    switcher.id = 'theme-switcher';
+    switcher.style.position = 'fixed';
+    switcher.style.top = '10px';
+    switcher.style.right = '10px';
+    switcher.style.zIndex = '9999';
+    const themes = [
+      { value: 'league', label: 'League' },
+      { value: 'beige', label: 'Beige' },
+      { value: 'black', label: 'Black' },
+      { value: 'blood', label: 'Blood' },
+      { value: 'moon', label: 'Moon' },
+      { value: 'night', label: 'Night' },
+      { value: 'serif', label: 'Serif' },
+      { value: 'simple', label: 'Simple' },
+      { value: 'sky', label: 'Sky' },
+      { value: 'solarized', label: 'Solarized' },
+      { value: 'white', label: 'White' },
+    ];
+    themes.forEach(({ value, label }) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      switcher.appendChild(option);
+    });
+    document.body.appendChild(switcher);
+  }
+
   const themeLink = document.getElementById('theme');
-  const themeSwitcher = document.getElementById('theme-switcher');
+  // set the theme to the meta name="theme" content value
+  const themeMeta = document.querySelector('meta[name="theme"]');
+  if (themeMeta) {
+    const theme = themeMeta.getAttribute('content');
+    themeLink.setAttribute('href', `styles/theme/${theme}.css`);
+  }
 
   // Set the dropdown to the current theme
   const currentTheme = themeLink.getAttribute('href').match(/theme\/([a-z]+)\.css/)[1];
-  themeSwitcher.value = currentTheme;
+  switcher.value = currentTheme;
 
-  themeSwitcher.addEventListener('change', () => {
-    const newTheme = themeSwitcher.value;
+  switcher.addEventListener('change', () => {
+    const newTheme = switcher.value;
     themeLink.setAttribute('href', `styles/theme/${newTheme}.css`);
     localStorage.setItem('reveal-theme', newTheme);
   });
 
-  // On load, check if a theme is saved in localStorage
+  // Optionally, restore from localStorage
   const savedTheme = localStorage.getItem('reveal-theme');
   if (savedTheme && savedTheme !== currentTheme) {
     themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
-    themeSwitcher.value = savedTheme;
+    switcher.value = savedTheme;
   }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // No need to duplicate theme switcher logic here, as it is handled in decorateMain
 });
 
 /**
@@ -126,6 +167,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  themeSwitcher();
 }
 
 /**
