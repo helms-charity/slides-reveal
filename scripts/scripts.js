@@ -102,12 +102,12 @@ function themeSwitcher() {
     localStorage.setItem('reveal-theme', newTheme);
   });
 
-  // Optionally, restore from localStorage (commented out in your last version)
-  // const savedTheme = localStorage.getItem('reveal-theme');
-  // if (savedTheme && savedTheme !== currentTheme) {
-  //   themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
-  //   switcher.value = savedTheme;
-  // }
+  // Optionally, restore from localStorage
+  const savedTheme = localStorage.getItem('reveal-theme');
+  if (savedTheme && savedTheme !== currentTheme) {
+    themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
+    switcher.value = savedTheme;
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
