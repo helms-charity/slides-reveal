@@ -53,7 +53,41 @@ export function moveInstrumentation(from, to) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const themeLink = document.getElementById('theme');
-  const themeSwitcher = document.getElementById('theme-switcher');
+  let themeSwitcher = document.getElementById('theme-switcher');
+
+  // If decorateMain hasn't run yet, create the theme switcher now
+  if (!themeSwitcher) {
+    themeSwitcher = document.createElement('select');
+    themeSwitcher.id = 'theme-switcher';
+    themeSwitcher.style.position = 'fixed';
+    themeSwitcher.style.top = '10px';
+    themeSwitcher.style.right = '10px';
+    themeSwitcher.style.zIndex = '9999';
+    const themes = [
+      { value: 'league', label: 'League' },
+      { value: 'beige', label: 'Beige' },
+      { value: 'black', label: 'Black' },
+      { value: 'notblood', label: 'Not Blood' },
+      { value: 'moon', label: 'Moon' },
+      { value: 'night', label: 'Night' },
+      { value: 'serif', label: 'Serif' },
+      { value: 'simple', label: 'Simple' },
+      { value: 'sky', label: 'Sky' },
+      { value: 'solarized', label: 'Solarized' },
+      { value: 'white', label: 'White' },
+    ];
+    themes.forEach(({ value, label }) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      themeSwitcher.appendChild(option);
+    });
+    document.body.appendChild(themeSwitcher);
+  }
+
+  // set the theme to the meta name="theme" content value
+  const theme = document.querySelector('meta[name="theme"]').getAttribute('content');
+  themeLink.setAttribute('href', `styles/theme/${theme}.css`);
 
   // Set the dropdown to the current theme
   const currentTheme = themeLink.getAttribute('href').match(/theme\/([a-z]+)\.css/)[1];
@@ -65,12 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('reveal-theme', newTheme);
   });
 
-  // On load, check if a theme is saved in localStorage
-  const savedTheme = localStorage.getItem('reveal-theme');
-  if (savedTheme && savedTheme !== currentTheme) {
-    themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
-    themeSwitcher.value = savedTheme;
-  }
+  // Optionally, restore from localStorage (commented out in your last version)
+  // const savedTheme = localStorage.getItem('reveal-theme');
+  // if (savedTheme && savedTheme !== currentTheme) {
+  //   themeLink.setAttribute('href', `styles/theme/${savedTheme}.css`);
+  //   themeSwitcher.value = savedTheme;
+  // }
 });
 
 /**
@@ -126,6 +160,36 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+
+  // Dynamically add the Theme Switcher dropdown if not already present
+  if (!document.getElementById('theme-switcher')) {
+    const themeSwitcher = document.createElement('select');
+    themeSwitcher.id = 'theme-switcher';
+    themeSwitcher.style.position = 'fixed';
+    themeSwitcher.style.top = '10px';
+    themeSwitcher.style.right = '10px';
+    themeSwitcher.style.zIndex = '9999';
+    const themes = [
+      { value: 'league', label: 'League' },
+      { value: 'beige', label: 'Beige' },
+      { value: 'black', label: 'Black' },
+      { value: 'blood', label: 'Blood' },
+      { value: 'moon', label: 'Moon' },
+      { value: 'night', label: 'Night' },
+      { value: 'serif', label: 'Serif' },
+      { value: 'simple', label: 'Simple' },
+      { value: 'sky', label: 'Sky' },
+      { value: 'solarized', label: 'Solarized' },
+      { value: 'white', label: 'White' },
+    ];
+    themes.forEach(({ value, label }) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      themeSwitcher.appendChild(option);
+    });
+    document.body.appendChild(themeSwitcher);
+  }
 }
 
 /**

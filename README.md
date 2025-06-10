@@ -40,3 +40,10 @@ npm run lint
 1. Install the [AEM CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/aem-cli`
 1. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
 1. Open the `{repo}` directory in your favorite IDE and start coding :)
+
+## Using reveal.js
+
+- https://revealjs.com/auto-animate/ for animation settings
+- https://revealjs.com/transitions/ for transition effects
+- https://revealjs.com/layout/ for "r-fit-text" and other options
+- To create a new theme, should just add a new css file under /styles/theme and use it in your page metadata for "theme". Add it to they style switcher options in scripts.js. But this is not yet tested.
