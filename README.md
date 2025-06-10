@@ -46,4 +46,4 @@ npm run lint
 - https://revealjs.com/auto-animate/ for animation settings
 - https://revealjs.com/transitions/ for transition effects
 - https://revealjs.com/layout/ for "r-fit-text" and other options
-- To create a new theme, should just add a new css file under /styles/theme and use it in your page metadata for "theme". Add it to they style switcher options in scripts.js. But this is not yet tested.
+- To create a new theme, should just add a new css file under /styles/theme and use it in your page metadata for "theme". Add it to they style switcher options in head.html. But this is not yet tested.
