@@ -3,3 +3,4 @@ dompurify.min.js
 plugin/*
 scripts/reveal.esm.js
 styles/theme/*
+styles/reveal.css

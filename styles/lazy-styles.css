@@ -23,10 +23,6 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
   color: #66d9ef;
 }
 
-.hljs-class .hljs-title {
-  color: white;
-}
-
 .hljs-attribute,
 .hljs-symbol,
 .hljs-regexp,
@@ -41,6 +37,7 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .hljs-section,
 .hljs-emphasis,
 .hljs-type,
+/* stylelint-disable-next-line selector-class-pattern */
 .hljs-built_in,
 .hljs-builtin-name,
 .hljs-selector-attr,
@@ -68,4 +65,8 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .hljs-type,
 .hljs-selector-id {
   font-weight: bold;
+}
+
+.hljs-class .hljs-title {
+  color: white;
 }
