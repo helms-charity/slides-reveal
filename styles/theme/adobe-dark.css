@@ -20,13 +20,21 @@
   --adobe-bg: linear-gradient(135deg, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
   --adobe-surface: #232326;
   --adobe-surface-transparent: color-mix(in srgb, rgb(144 144 144) 15%, transparent);
-  --adobe-text: #f5f5f7;
+  --adobe-text: #000000;
+  --adobe-text-light: #ffffff;
   --adobe-accent: #dc1822;
   --adobe-muted: #b1b1b3;
   --adobe-border: #35363a;
-  --r-heading1-text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0  0  0  / 10%), 0 0 5px rgb(0  0  0  / 10%), 0 1px 3px rgb(0  0  0  / 30%), 0 3px 5px rgb(0  0  0  / 20%), 0 5px 10px rgb(0  0  0  / 25%), 0 15px 10px rgb(0  0  0  / 15%);
+
+  /* Dark headings */
+  --r-heading1-text-shadow: 0 1px 0 #858585, 0 2px 0 #262626, 0 3px 0 #717171, 0 4px 0 #4d4d4d, 0 5px 0 #373737, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 15px 10px rgb(0 0 0 / 15%);
   --r-heading2-text-shadow: 4px 4px 6px rgb(0 0 0 / 20%);
   --r-heading3-text-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
+  
+  /* light headings */
+  --r-heading1-text-shadow-light: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0  0  0  / 10%), 0 0 5px rgb(0  0  0  / 10%), 0 1px 3px rgb(0  0  0  / 30%), 0 3px 5px rgb(0  0  0  / 20%), 0 5px 10px rgb(0  0  0  / 25%), 0 15px 10px rgb(0  0  0  / 15%);
+  --r-heading2-text-shadow-light: 4px 4px 6px rgb(0 0 0 / 40%);
+  --r-heading3-text-shadow-light: 2px 2px 4px rgb(0 0 0 / 35%);
 }
 
 /* Main background and font */
@@ -88,16 +96,16 @@
 
 .reveal h2 {
   font-size: 2.5em;
-  color: var(--adobe-text);
-  text-shadow: var(--r-heading2-text-shadow);
-  margin-top: 0.1em;
-  margin-bottom: 0;
+  color: var(--adobe-text-light);
+  text-shadow: var(--r-heading2-text-shadow-light);
+  margin-top: -0.5em;
+  margin-bottom: -0.4em;
 }
 
 .reveal h3 {
   font-size: 2em;
-  color: var(--adobe-text);
-  text-shadow: var(--r-heading3-text-shadow);
+  color: var(--adobe-text-light);
+  text-shadow: var(--r-heading3-text-shadow-light);
   margin-top: 0.1em;
   margin-bottom: 0;
 }
@@ -108,6 +116,10 @@
   font-size: 1.7em;
   color: var(--adobe-muted);
   margin-bottom: 0;
+}
+
+.reveal .slides section:first-of-type h3{
+  letter-spacing: 0.05em;
 }
 
 /* Links */
