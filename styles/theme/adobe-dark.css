@@ -1,0 +1,257 @@
+/**
+ * Adobe Dark Theme for Reveal.js
+ * Modern, clean, dark palette with subtle red and white accents.
+ * Uses "Adobe Clean" font.
+ */
+
+/* Import Adobe Clean font if available locally or via CDN */
+@font-face {
+  font-family: "Adobe Clean";
+  src: local("Adobe Clean"), local("AdobeClean-Regular"),
+       url("./fonts/adobe-clean/AdobeClean-Regular.woff2") format("woff2"),
+       url("./fonts/adobe-clean/AdobeClean-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Root theme variables */
+:root {
+  --adobe-bg: linear-gradient(135deg, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
+  --adobe-surface: #232326;
+  --adobe-surface-transparent: color-mix(in srgb, rgb(43, 43, 43) 25%, transparent);
+  --adobe-surface-transparent-light: color-mix(in srgb, rgb(159, 159, 159) 15%, transparent);
+  --adobe-text: #000000;
+  --adobe-text-light: #ffffff;
+  --adobe-accent: #dc1822;
+  --adobe-muted: #b1b1b3;
+  --adobe-border: #35363a;
+
+  /* Dark headings */
+  --r-heading1-text-shadow: 0 1px 0 #858585, 0 2px 0 #262626, 0 3px 0 #717171, 0 4px 0 #4d4d4d, 0 5px 0 #373737, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 15px 10px rgb(0 0 0 / 15%);
+  --r-heading2-text-shadow: 4px 4px 6px rgb(0 0 0 / 20%);
+  --r-heading3-text-shadow: 2px 2px 4px rgb(0 0 0 / 15%);
+  
+  /* light headings */
+  --r-heading1-text-shadow-light: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0  0  0  / 10%), 0 0 5px rgb(0  0  0  / 10%), 0 1px 3px rgb(0  0  0  / 30%), 0 3px 5px rgb(0  0  0  / 20%), 0 5px 10px rgb(0  0  0  / 25%), 0 15px 10px rgb(0  0  0  / 15%);
+  --r-heading2-text-shadow-light: 4px 4px 6px rgb(0 0 0 / 40%);
+  --r-heading3-text-shadow-light: 2px 2px 4px rgb(0 0 0 / 35%);
+}
+
+/* Main background and font */
+.reveal {
+  background: var(--adobe-bg);
+  color: var(--adobe-text);
+  font-family: "Adobe Clean", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* Slide surface */
+.reveal .slides section {
+  backdrop-filter: blur(68px); /* Soft blur effect */
+  border-radius: 12px;
+  box-shadow: 0 4px 32px 0 rgb(0 0 0 / 38%);
+  padding: .1em 2.5em;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 600px;
+  transition: box-shadow 0.2s;
+}
+
+/* Title slide surface */
+.reveal .slides section:first-of-type {
+  background: var(--adobe-surface-transparent-light);
+  backdrop-filter: blur(8px); /* Soft blur effect */
+  border-radius: 12px;
+  box-shadow: 0 4px 32px 0 rgb(0 0 0 / 38%);
+  padding: .5em 2.5em;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 600px;
+  transition: box-shadow 0.2s;
+}
+
+/* Headings */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: "Adobe Clean", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--adobe-text);
+  font-weight: 700;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.01em;
+}
+
+.reveal h1 {
+  font-size: 3.6em;
+  color: var(--adobe-text);
+  letter-spacing: 0.02em;
+  text-shadow: var(--r-heading1-text-shadow);
+}
+
+.reveal h2 {
+  font-size: 2.5em;
+  color: var(--adobe-text);
+  text-shadow: var(--r-heading2-text-shadow);
+  margin-top: -0.5em;
+  margin-bottom: -0.4em;
+}
+
+.reveal h3 {
+  font-size: 2em;
+  color: var(--adobe-text);
+  text-shadow: var(--r-heading3-text-shadow);
+  margin-top: 0.1em;
+  margin-bottom: 0;
+}
+
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-size: 1.7em;
+  color: var(--adobe-muted);
+  margin-bottom: 0;
+}
+
+.reveal .slides section:first-of-type h3{
+  letter-spacing: 0.05em;
+}
+
+/* Links */
+.reveal a {
+  color: var(--adobe-accent);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.reveal a:hover,
+.reveal a:focus {
+  color: #ff616b;
+  text-decoration: none;
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+  color: var(--adobe-text);
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.reveal li {
+  margin-bottom: 0.4em;
+  text-align: left;
+}
+
+/* Code blocks */
+.reveal code,
+.reveal pre {
+  font-family: Menlo, Monaco, Consolas, monospace;
+  background: #232326;
+  color: #ffb3b8;
+  border-radius: 6px;
+  padding: 0.2em 0.5em;
+  font-size: 0.95em;
+}
+
+/* Blockquotes */
+.reveal blockquote {
+  border-left: 4px solid var(--adobe-accent);
+  background: #232326;
+  color: var(--adobe-muted);
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+/* Images, videos, iframes */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgb(0 0 0 / 18%);
+  max-width: 100%;
+  height: auto;
+}
+
+/* Strong and emphasis */
+.reveal strong,
+.reveal b {
+  color: var(--adobe-accent);
+  font-weight: 700;
+}
+
+.reveal em {
+  color: var(--adobe-muted);
+  font-style: italic;
+}
+
+/* Tables */
+.reveal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+  background: #232326;
+  color: var(--adobe-text);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reveal th,
+.reveal td {
+  border: 1px solid var(--adobe-border);
+  padding: 0.7em 1em;
+}
+
+.reveal th {
+  background: #232326;
+  color: var(--adobe-accent);
+  font-weight: 700;
+}
+
+.reveal tr:nth-child(even) {
+  background: #1c1d1f;
+}
+
+/* Selection */
+.reveal ::selection {
+  background: var(--adobe-accent);
+  color: #fff;
+}
+
+/* Custom accent bar for slides */
+.reveal .adobe-accent-bar {
+  width: 60px;
+  height: 6px;
+  background: var(--adobe-accent);
+  border-radius: 3px;
+  margin-bottom: 2em;
+}
+
+/* Custom button style */
+.reveal .adobe-btn {
+  background: var(--adobe-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7em 2em;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reveal .adobe-btn:hover,
+.reveal .adobe-btn:focus {
+  background: #ff616b;
+}
+
+/* End of Adobe Dark Theme */
