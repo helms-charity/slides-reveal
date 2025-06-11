@@ -17,7 +17,7 @@
 
 /* Root theme variables */
 :root {
-  --adobe-bg: linear-gradient(135deg, #a30202 0%, #8b4848 40%, #4f0a0d 80%, #270003 100%);
+  --adobe-bg: linear-gradient(135deg, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
   --adobe-surface: #232326;
   --adobe-surface-transparent: color-mix(in srgb, rgb(144 144 144) 15%, transparent);
   --adobe-text: #f5f5f7;
