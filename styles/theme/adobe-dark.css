@@ -1,0 +1,216 @@
+/**
+ * Adobe Dark Theme for Reveal.js
+ * Modern, clean, dark palette with subtle red and white accents.
+ * Uses "Adobe Clean" font.
+ */
+
+/* Import Adobe Clean font if available locally or via CDN */
+@font-face {
+  font-family: "Adobe Clean";
+  src: local("Adobe Clean"), local("AdobeClean-Regular"),
+       url("./fonts/adobe-clean/AdobeClean-Regular.woff2") format("woff2"),
+       url("./fonts/adobe-clean/AdobeClean-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Root theme variables */
+:root {
+  --adobe-bg: #18191b;
+  --adobe-surface: #232326;
+  --adobe-text: #f5f5f7;
+  --adobe-accent: #e34850;
+  --adobe-muted: #b1b1b3;
+  --adobe-border: #35363a;
+}
+
+/* Main background and font */
+.reveal {
+  background: var(--adobe-bg);
+  color: var(--adobe-text);
+  font-family: "Adobe Clean", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* Slide surface */
+.reveal .slides section {
+  background: var(--adobe-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+  padding: 2.5em 2.5em;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 600px;
+  transition: box-shadow 0.2s;
+}
+
+/* Headings */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: "Adobe Clean", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--adobe-text);
+  font-weight: 700;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.01em;
+}
+
+.reveal h1 {
+  font-size: 2.6em;
+  color: var(--adobe-accent);
+  letter-spacing: 0.02em;
+}
+
+.reveal h2 {
+  font-size: 2em;
+  color: var(--adobe-text);
+}
+
+.reveal h3 {
+  font-size: 1.5em;
+  color: var(--adobe-text);
+}
+
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-size: 1.1em;
+  color: var(--adobe-muted);
+}
+
+/* Links */
+.reveal a {
+  color: var(--adobe-accent);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.reveal a:hover,
+.reveal a:focus {
+  color: #ff616b;
+  text-decoration: none;
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+  color: var(--adobe-text);
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.reveal li {
+  margin-bottom: 0.4em;
+}
+
+/* Code blocks */
+.reveal code,
+.reveal pre {
+  font-family: "Menlo", "Monaco", "Consolas", monospace;
+  background: #232326;
+  color: #ffb3b8;
+  border-radius: 6px;
+  padding: 0.2em 0.5em;
+  font-size: 0.95em;
+}
+
+/* Blockquotes */
+.reveal blockquote {
+  border-left: 4px solid var(--adobe-accent);
+  background: #232326;
+  color: var(--adobe-muted);
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  border-radius: 8px;
+  font-style: italic;
+}
+
+/* Images, videos, iframes */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.18);
+  max-width: 100%;
+  height: auto;
+}
+
+/* Strong and emphasis */
+.reveal strong,
+.reveal b {
+  color: var(--adobe-accent);
+  font-weight: 700;
+}
+
+.reveal em {
+  color: var(--adobe-muted);
+  font-style: italic;
+}
+
+/* Tables */
+.reveal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5em 0;
+  background: #232326;
+  color: var(--adobe-text);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reveal th,
+.reveal td {
+  border: 1px solid var(--adobe-border);
+  padding: 0.7em 1em;
+}
+
+.reveal th {
+  background: #232326;
+  color: var(--adobe-accent);
+  font-weight: 700;
+}
+
+.reveal tr:nth-child(even) {
+  background: #1c1d1f;
+}
+
+/* Selection */
+.reveal ::selection {
+  background: var(--adobe-accent);
+  color: #fff;
+}
+
+/* Custom accent bar for slides */
+.reveal .adobe-accent-bar {
+  width: 60px;
+  height: 6px;
+  background: var(--adobe-accent);
+  border-radius: 3px;
+  margin-bottom: 2em;
+}
+
+/* Custom button style */
+.reveal .adobe-btn {
+  background: var(--adobe-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7em 2em;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.reveal .adobe-btn:hover,
+.reveal .adobe-btn:focus {
+  background: #ff616b;
+}
+
+/* End of Adobe Dark Theme */
