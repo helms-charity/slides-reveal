@@ -19,7 +19,8 @@
 :root {
   --adobe-bg: linear-gradient(135deg, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
   --adobe-surface: #232326;
-  --adobe-surface-transparent: color-mix(in srgb, rgb(144 144 144) 15%, transparent);
+  --adobe-surface-transparent: color-mix(in srgb, rgb(43, 43, 43) 25%, transparent);
+  --adobe-surface-transparent-light: color-mix(in srgb, rgb(159, 159, 159) 15%, transparent);
   --adobe-text: #000000;
   --adobe-text-light: #ffffff;
   --adobe-accent: #dc1822;
@@ -61,7 +62,7 @@
 
 /* Title slide surface */
 .reveal .slides section:first-of-type {
-  background: var(--adobe-surface-transparent);
+  background: var(--adobe-surface-transparent-light);
   backdrop-filter: blur(8px); /* Soft blur effect */
   border-radius: 12px;
   box-shadow: 0 4px 32px 0 rgb(0 0 0 / 38%);
@@ -96,16 +97,16 @@
 
 .reveal h2 {
   font-size: 2.5em;
-  color: var(--adobe-text-light);
-  text-shadow: var(--r-heading2-text-shadow-light);
+  color: var(--adobe-text);
+  text-shadow: var(--r-heading2-text-shadow);
   margin-top: -0.5em;
   margin-bottom: -0.4em;
 }
 
 .reveal h3 {
   font-size: 2em;
-  color: var(--adobe-text-light);
-  text-shadow: var(--r-heading3-text-shadow-light);
+  color: var(--adobe-text);
+  text-shadow: var(--r-heading3-text-shadow);
   margin-top: 0.1em;
   margin-bottom: 0;
 }
@@ -145,6 +146,7 @@
 
 .reveal li {
   margin-bottom: 0.4em;
+  text-align: left;
 }
 
 /* Code blocks */
