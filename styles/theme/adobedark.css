@@ -18,12 +18,13 @@
 /* Root theme variables */
 :root {
   --adobe-bg: linear-gradient(135deg, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
+  --fancy-bg: linear-gradient(to bottom right,#2f86fd,#2dbbc2,#c8bd02,#db151d,#80cf64,#72e5e1);
   --adobe-surface: #232326;
-  --adobe-surface-transparent: color-mix(in srgb, rgb(43, 43, 43) 25%, transparent);
-  --adobe-surface-transparent-light: color-mix(in srgb, rgb(159, 159, 159) 15%, transparent);
-  --adobe-text: #000000;
-  --adobe-text-light: #ffffff;
-  --adobe-accent: #dc1822;
+  --adobe-surface-transparent: color-mix(in srgb, rgb(43 43 43) 25%, transparent);
+  --adobe-surface-transparent-light: color-mix(in srgb, rgb(159 159 159) 15%, transparent);
+  --adobe-text: #000;
+  --adobe-text-light: #fff;
+  --adobe-accent: #08013e;
   --adobe-muted: #b1b1b3;
   --adobe-border: #35363a;
 
@@ -38,9 +39,25 @@
   --r-heading3-text-shadow-light: 2px 2px 4px rgb(0 0 0 / 35%);
 }
 
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 /* Main background and font */
 .reveal {
-  background: var(--adobe-bg);
+  background: var(--fancy-bg);
+  background-size: 400% 400%;
+  animation: gradient-animation 40s ease infinite;
   color: var(--adobe-text);
   font-family: "Adobe Clean", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-size: 32px;
@@ -50,7 +67,8 @@
 
 /* Slide surface */
 .reveal .slides section {
-  backdrop-filter: blur(68px); /* Soft blur effect */
+  background: var(--adobe-surface-transparent-light);
+  backdrop-filter: blur(98px); /* Soft blur effect */
   border-radius: 12px;
   box-shadow: 0 4px 32px 0 rgb(0 0 0 / 38%);
   padding: .1em 2.5em;
@@ -97,7 +115,7 @@
 
 .reveal h2 {
   font-size: 2.5em;
-  color: var(--adobe-text);
+  color: var(--adobe-text-light);
   text-shadow: var(--r-heading2-text-shadow);
   margin-top: -0.5em;
   margin-bottom: -0.4em;
@@ -105,7 +123,7 @@
 
 .reveal h3 {
   font-size: 2em;
-  color: var(--adobe-text);
+  color: var(--adobe-text-light);
   text-shadow: var(--r-heading3-text-shadow);
   margin-top: 0.1em;
   margin-bottom: 0;
