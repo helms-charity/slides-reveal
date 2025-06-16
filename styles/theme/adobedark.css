@@ -78,6 +78,10 @@
   transition: box-shadow 0.2s;
 }
 
+.reveal .slides>section, .reveal .slides>section>section {
+  width: 83.2%;
+}
+
 /* Title slide surface */
 .reveal .slides section:first-of-type {
   background: var(--adobe-surface-transparent-light);
@@ -139,6 +143,10 @@
 
 .reveal .slides section:first-of-type h3{
   letter-spacing: 0.05em;
+}
+
+.reveal .slides section:first-of-type h1,h2,h3 {
+  text-align: center;
 }
 
 /* Links */
