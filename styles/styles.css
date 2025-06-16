@@ -5,3 +5,39 @@ body {
 body.appear {
   opacity: 1;
 }
+
+h1, h2, h3, h4, h5, h6, p {
+  text-align:left;
+}
+
+section.center h1 {
+  text-align: center;
+}
+
+section.center h2 {
+  text-align: center;
+}
+
+section.center h3 {
+  text-align: center;
+}
+
+section.center h4 {
+  text-align: center;
+}
+
+section.center h5 {
+  text-align: center;
+}
+
+section.center h6 {
+  text-align: center;
+}
+
+section.center p {
+  text-align: center;
+}
+
+img, video, iframe {
+  object-fit: contain;
+}
