@@ -17,11 +17,12 @@
 
 /* Root theme variables */
 :root {
-  --adobe-bg: linear-gradient(135deg, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
+  --adobe-bg: linear-gradient(to right, #a30202 0%, #9e4848 40%, #680e12 80%, #3e0005 100%);
   --fancy-bg: linear-gradient(to bottom right,#2f86fd,#2dbbc2,#c8bd02,#db151d,#80cf64,#72e5e1);
   --adobe-surface: #232326;
   --adobe-surface-transparent: color-mix(in srgb, rgb(43 43 43) 25%, transparent);
   --adobe-surface-transparent-light: color-mix(in srgb, rgb(159 159 159) 15%, transparent);
+  --adobe-surface-transparent-title: linear-gradient(135deg, rgb(255 255 255 / 10%), rgb(255 255 255 / 0%));
   --adobe-text: #000;
   --adobe-text-light: #fff;
   --adobe-accent: #08013e;
@@ -75,7 +76,6 @@
   margin: 0 auto;
   max-width: 1200px;
   min-height: 600px;
-  transition: box-shadow 0.2s;
 }
 
 .reveal .slides>section, .reveal .slides>section>section {
@@ -84,7 +84,7 @@
 
 /* Title slide surface */
 .reveal .slides section:first-of-type {
-  background: var(--adobe-surface-transparent-light);
+  background: var(--adobe-surface-transparent-title);
   backdrop-filter: blur(8px); /* Soft blur effect */
   border-radius: 12px;
   box-shadow: 0 4px 32px 0 rgb(0 0 0 / 38%);
@@ -92,7 +92,6 @@
   margin: 0 auto;
   max-width: 1200px;
   min-height: 600px;
-  transition: box-shadow 0.2s;
 }
 
 /* Headings */
@@ -145,6 +144,7 @@
   letter-spacing: 0.05em;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .reveal .slides section:first-of-type h1,h2,h3 {
   text-align: center;
 }
@@ -152,14 +152,14 @@
 /* Links */
 .reveal a {
   color: var(--adobe-accent);
-  text-decoration: underline;
-  transition: color 0.2s;
+  text-decoration: none;
+  transition: color 0.5s;
 }
 
 .reveal a:hover,
 .reveal a:focus {
-  color: #ff616b;
-  text-decoration: none;
+  color: #6defea;
+  text-decoration: underline;
 }
 
 /* Lists */
@@ -261,6 +261,24 @@
   margin-bottom: 2em;
 }
 
+/* Progress bar customization */
+.reveal .progress {
+  background-color: rgb(0 0 0 / 30%);
+  height: 5px;
+}
+
+.reveal .progress span {
+  background-color: red;
+}
+
+/* Slide number customization */
+.reveal .slide-number {
+    right: 39px;
+    bottom: 32px;
+    color: #fff;
+    background-color: unset;
+}
+
 /* Custom button style */
 .reveal .adobe-btn {
   background: var(--adobe-accent);
@@ -272,7 +290,7 @@
   font-size: 1em;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.5s;
 }
 
 .reveal .adobe-btn:hover,

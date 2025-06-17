@@ -152,6 +152,7 @@ async function loadEager(doc) {
     progress: true,
     center: true,
     hash: true,
+    slideNumber: 'c/t',
     transition: 'convex',
     // Learn about plugins: https://revealjs.com/plugins/
     plugins: [RevealZoom, RevealNotes, RevealSearch, RevealHighlight],
