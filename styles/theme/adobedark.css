@@ -66,6 +66,12 @@
   line-height: 1.5;
 }
 
+.reveal p {
+  color: var(--adobe-text);
+  margin: 0.5em 0;
+  font-size: 24px;
+}
+
 /* Slide surface */
 .reveal .slides section {
   background: var(--adobe-surface-transparent-light);
@@ -93,6 +99,51 @@
   max-width: 1200px;
   min-height: 600px;
 }
+
+/* Subsection handling */
+.reveal .slides .has-subsections.stack.present > section{
+  background: unset;
+  backdrop-filter: unset;
+  border-radius: 12px;
+  box-shadow: none;
+
+  /* box-shadow: 0 4px 32px 0 rgb(0 0 0 / 38%); */
+  padding: 0;
+  margin: 0 auto;
+}
+
+/* Subsection handling */
+.reveal .slides .has-subsections.stack.present > section:not(:first-of-type) {
+    /* width: 100vw;
+    height: 100vh;
+    inset: 50% 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); */
+
+    width: 100vw;
+    height: 100vh;
+    max-width: unset;;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin: -50vh -50vw;
+
+  /* width: 90%;
+  height: 100%;
+  padding: 0;
+  margin: 0 auto; */
+}
+
+
+
+/* .reveal .slides .has-subsections.stack.present > section:not(:first-of-type) picture img {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin: 0 auto; 
+} */
 
 /* Headings */
 .reveal h1,
