@@ -172,8 +172,6 @@ function WrapDefaultContentDivForSubsections() {
       // Move the defaultContentDiv inside the new section
       defaultContentDiv.parentNode.insertBefore(wrapperSection, defaultContentDiv);
       wrapperSection.appendChild(defaultContentDiv);
-      // Stop after the first match
-      break;
     }
   }
 }

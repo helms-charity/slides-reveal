@@ -308,7 +308,7 @@ function createOptimizedPicture(
   const picture = document.createElement('picture');
   const { pathname } = url;
   const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
-  const lightboxPath = { pathname };
+  const lightboxPath = pathname;
 
   // webp
   breakpoints.forEach((br) => {

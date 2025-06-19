@@ -136,6 +136,23 @@
   margin: 0 auto; */
 }
 
+.reveal .slides section.section > section div p:has(picture) {
+  display: flex;
+  column-gap: 20px;
+  align-items: baseline;
+}
+
+.reveal .slides .has-subsections.stack > section div p:has(picture) {
+    display: flex;
+    column-gap: 30px;
+    align-items: flex-end;
+    height: 450px;
+}
+
+/* hack for too tall slide */
+.reveal .slides .has-subsections.stack > section div.default-content-wrapper > h3#frequent-alerters-ams ~ p:has(picture) {
+    height: 375px;
+}
 
 
 /* .reveal .slides .has-subsections.stack.present > section:not(:first-of-type) picture img {
@@ -325,7 +342,7 @@
 /* Slide number customization */
 .reveal .slide-number {
     right: 39px;
-    bottom: 32px;
+    bottom: 50px;
     color: #fff;
     background-color: unset;
 }
