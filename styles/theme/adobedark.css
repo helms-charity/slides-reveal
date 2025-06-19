@@ -284,6 +284,7 @@
 }
 
 /* Images, videos, iframes */
+/* stylelint-disable-next-line no-descending-specificity */
 .reveal img,
 .reveal video,
 .reveal iframe {
