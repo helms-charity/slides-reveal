@@ -149,9 +149,27 @@
     height: 450px;
 }
 
+/* Hacky image handling for individual subsections */
+.reveal .slides .has-subsections.stack section.subsection img {
+    width: 1920px;
+    margin: 0 auto;
+    position: absolute;
+    height: 69vh;
+    background: black;
+    top: 47vh;
+}
+
+.reveal .slides .has-subsections.stack section.subsection:nth-of-type(3) img {
+    top:-4vh;
+}
+
+.reveal .slides .has-subsections.stack section.subsection:nth-of-type(4) img {
+    top:-55vh;
+}
+
 /* hack for too tall slide */
 .reveal .slides .has-subsections.stack > section div.default-content-wrapper > h3#frequent-alerters-ams ~ p:has(picture) {
-    height: 375px;
+    height: 333px;
 }
 
 
