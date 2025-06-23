@@ -118,6 +118,64 @@ function decorateReveal() {
   });
 }
 
+/*  Subsection creation for vertical slides */
+export function replaceTildesWithSubSections() {
+  const elements = document.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6');
+  const tildeRegex = /~~~/g;
+
+  elements.forEach((element) => {
+    if (element.innerHTML.includes('~~~')) {
+      const nextElementPictureP = element.nextElementSibling;
+      nextElementPictureP.parentElement.parentElement.classList.add('has-subsections');
+
+      // Remove nextElementPictureP from its current position in the DOM
+      if (nextElementPictureP) {
+        nextElementPictureP.parentNode.removeChild(nextElementPictureP);
+      }
+
+      // Replace tildes with a placeholder section
+      const replacedHTML = element.innerHTML.replace(tildeRegex, '<section class="subsection-placeholder"></section>');
+      element.innerHTML = replacedHTML;
+
+      // Find the placeholder section
+      const placeholder = element.querySelector('.subsection-placeholder');
+      if (placeholder && nextElementPictureP) {
+        // Create a new section to contain nextElementPictureP
+        const newSection = document.createElement('section');
+        newSection.classList.add('subsection');
+        newSection.appendChild(nextElementPictureP);
+
+        // Insert the new section as a child of the parent's parent, in place of the placeholder
+        const parentOfParent = element.parentElement?.parentElement;
+        if (parentOfParent) {
+          // eslint-disable-next-line max-len
+          parentOfParent.insertBefore(newSection, parentOfParent.children[Array.prototype.indexOf.call(parentOfParent.children, element.parentElement) + 1]);
+        }
+
+        // Remove the placeholder from the element
+        placeholder.remove();
+      }
+    }
+  });
+}
+
+function WrapDefaultContentDivForSubsections() {
+  // Find all section elements with the class "has-subsections"
+  const sections = document.querySelectorAll('section.has-subsections');
+  // eslint-disable-next-line no-restricted-syntax
+  for (const section of sections) {
+    // Find the first div with class "default-content-wrapper" inside this section
+    const defaultContentDiv = section.querySelector('div.default-content-wrapper');
+    if (defaultContentDiv) {
+      // Create a new section element
+      const wrapperSection = document.createElement('section');
+      // Move the defaultContentDiv inside the new section
+      defaultContentDiv.parentNode.insertBefore(wrapperSection, defaultContentDiv);
+      wrapperSection.appendChild(defaultContentDiv);
+    }
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -130,6 +188,8 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  replaceTildesWithSubSections();
+  WrapDefaultContentDivForSubsections();
 }
 
 /**
@@ -152,6 +212,7 @@ async function loadEager(doc) {
     progress: true,
     center: true,
     hash: true,
+    slideNumber: 'c/t',
     transition: 'convex',
     slideNumber: 'c/t',
     // Learn about plugins: https://revealjs.com/plugins/
